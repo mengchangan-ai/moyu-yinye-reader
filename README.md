@@ -69,7 +69,7 @@
 | macOS（Apple Silicon） | `yinye-0.3.0-aarch64.dmg` | 拖进「应用程序」就能装。没签名也没公证，第一次打开要**右键 → 打开**（或在「隐私与安全性」里点「仍要打开」） |
 | 安卓 | `yinye-android-0.3.0.apk` | universal，32/64 位都在里面，约 30MB。debug keystore 自签名，装的时候要允许「未知来源」；换手机重装若提示签名冲突，先卸载旧的 |
 
-仓库里的 `dist/` 也留了一份 APK，方便直接下。桌面包当前只出了 **macOS arm64** 一个，Intel Mac / Windows / Linux 没有打包（见「已知边界」）。
+`dist/` 里也留了同两份包，随手能取。桌面包当前只出了 **macOS arm64** 一个，Intel Mac / Windows / Linux 没有打包（见「已知边界」）。
 
 ## 自己构建
 
