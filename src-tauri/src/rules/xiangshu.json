@@ -1,0 +1,31 @@
+{
+  "id": 1,
+  "url": "http://www.ibiqugu.net/",
+  "name": "香书小说",
+  "type": "html",
+  "language": "zh_CN",
+  "search": {
+    "url": "http://www.ibiqugu.net/modules/article/waps.php",
+    "method": "post",
+    "data": "{searchkey: %s}",
+    "result": "table.grid > tbody > tr",
+    "bookName": "td.even > a",
+    "author": "td:nth-of-type(3)"
+  },
+  "book": {
+    "cover": "#fmimg img",
+    "title": "#info h1",
+    "author": "#info p:nth-of-type(1)"
+  },
+  "toc": {
+    "item": "#list > dl > dd > a",
+    "offset": 0
+  },
+  "chapter": {
+    "title": ".bookname > h1",
+    "content": "#content",
+    "paragraphTag": "<br>+",
+    "filterTxt": "一秒记住【文学巴士.*?】.*?免费阅读！|\\(www\\.xbiquge.*?在线阅读！|天才一秒记住.+?阅读。|手机用户请浏览.*?阅读体验。|手机版阅读网址：m\\.|最新网址：.*",
+    "filterTag": "div p script"
+  }
+}

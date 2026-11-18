@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.moyu_reader" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 阅读器自己画米色纸面（#F7F7F2），状态栏/导航栏和启动底色都跟着它走，
+             不跟系统深色模式翻转，免得上下两条黑边打断阅读。 -->
+        <item name="android:windowBackground">#F7F7F2</item>
+        <item name="android:statusBarColor">#F7F7F2</item>
+        <item name="android:navigationBarColor">#F7F7F2</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

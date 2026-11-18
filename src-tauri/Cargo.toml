@@ -1,0 +1,29 @@
+[package]
+name = "moyu-reader"
+version = "0.1.0"
+description = "摸鱼阅读 · 代码主题小说阅读器 + 轻量书源下载器"
+authors = ["you"]
+edition = "2021"
+
+# 安卓/iOS 只能编进 lib（Tauri 的 mobile_entry_point 从 lib 进），
+# 桌面则仍然由 main.rs 调 run()。两边共用同一份逻辑。
+[lib]
+name = "moyu_reader_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["macos-private-api"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# 用 rustls 而不是系统 native-tls：安卓上没有 openssl，交叉编译会直接失败
+reqwest = { version = "0.12", default-features = false, features = ["gzip", "json", "rustls-tls"] }
+scraper = "0.20"
+tokio = { version = "1", features = ["full"] }
+url = "2"
+regex = "1"
+rand = "0.8"
+base64 = "0.22"
+tauri-plugin-global-shortcut = "2"

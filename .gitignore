@@ -1,0 +1,21 @@
+# 依赖与构建产物
+node_modules/
+src-tauri/target/
+
+# 安卓构建生成的中间文件（gen/android 的源码部分保留，方便直接 build）
+src-tauri/gen/android/.gradle/
+src-tauri/gen/android/.kotlin/
+src-tauri/gen/android/.tauri/
+src-tauri/gen/android/build/
+src-tauri/gen/android/app/build/
+src-tauri/gen/android/local.properties
+src-tauri/gen/android/key.properties
+src-tauri/gen/android/keystore.properties
+src-tauri/gen/android/app/src/main/jniLibs/
+
+# 系统与编辑器
+.DS_Store
+*.iml
+.idea/
+.vscode/
+*.log

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f7f2" />
+  <title>隐页</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="glass" data-view="home">
+  <div class="window" id="window">
+    <div class="titlebar" data-tauri-drag-region>
+      <div class="lights">
+        <span data-act="close" title="关闭" class="lt-close"></span>
+        <span data-act="min" title="最小化" class="lt-min"></span>
+        <span data-act="max" title="最大化 / 还原" class="lt-max"></span>
+      </div>
+      <div class="app-title">隐页 <span class="brand-sub">Quiet reading</span></div>
+      <div class="chapter-chip" id="chapterChip">—</div>
+    </div>
+
+    <div class="toolbar">
+      <button id="backBtn" class="ghost" hidden>← 书架</button>
+      <button id="importBtn">导入 ▾</button>
+      <button id="tocBtn" hidden>目录</button>
+      <button id="desktopModeBtn" hidden title="Cmd/Ctrl+Shift+M">摸鱼模式</button>
+      <input type="file" id="fileInput" accept=".txt,.md,.text" hidden />
+      <span class="spacer"></span>
+      <button id="gearBtn" title="阅读设置">设置</button>
+    </div>
+
+    <div class="controls" id="controls" hidden>
+      <label>字号 <button id="fontMinus" class="mini">A-</button><button id="fontPlus" class="mini">A+</button></label>
+      <label>字色
+        <span class="swatches" id="fgSwatches">
+          <button class="swatch auto" data-fg="" title="跟随主题">A</button>
+          <button class="swatch" data-fg="#f2f2f2" style="--c:#f2f2f2" title="白"></button>
+          <button class="swatch" data-fg="#101010" style="--c:#101010" title="黑"></button>
+          <button class="swatch" data-fg="#ffd479" style="--c:#ffd479" title="暖黄"></button>
+          <button class="swatch" data-fg="#9fe08f" style="--c:#9fe08f" title="护眼绿"></button>
+          <button class="swatch" data-fg="#ffa8b3" style="--c:#ffa8b3" title="浅粉"></button>
+        </span>
+        <input type="color" id="fgColor" value="#f2f2f2" title="自定义字色" />
+      </label>
+      <label>翻页
+        <span class="seg" id="dirSeg">
+          <button class="seg-btn active" data-dir="v">上下</button>
+          <button class="seg-btn" data-dir="h">左右</button>
+        </span>
+      </label>
+      <span class="key-hint">←→ / ↑↓ 翻页 · ⌘± 字号 · ⌘0 重置</span>
+    </div>
+
+    <div class="workspace">
+      <!-- 书架主页 -->
+      <section class="home" id="homeView">
+        <div class="home-head">
+          <h1 class="home-title" id="homeTitle">书架</h1>
+          <button id="homeBack" class="chip-btn" hidden>← 书架</button>
+          <div class="home-search">
+            <select id="sourceSelect" aria-label="搜索书源" title="搜索书源"><option value="1">香书小说</option></select>
+            <input id="homeSearch" type="search" placeholder="输入书名，回车搜索" autocomplete="off" spellcheck="false" />
+            <button id="homeSearchBtn">搜索</button>
+          </div>
+        </div>
+        <div class="home-scroll" id="homeScroll">
+          <div class="book-grid" id="bookGrid"></div>
+          <div class="home-empty" id="homeEmpty" hidden>
+            <div class="home-empty-icon">📚</div>
+            <p>书架还是空的</p>
+            <p class="dim">上面搜一本书，点「加入书架」就会出现在这里</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 阅读视图 -->
+      <aside class="drawer" id="tocDrawer" hidden>
+        <div class="drawer-head">
+          <span>目录</span>
+          <span class="drawer-count" id="tocCount"></span>
+          <button class="icon-btn" id="tocClose" title="收起目录">×</button>
+        </div>
+        <div class="drawer-list" id="tocList"></div>
+      </aside>
+
+      <main class="reader" id="readerView" hidden>
+        <div class="chapter-head" id="chapterHead">—</div>
+        <div class="reading-area">
+          <div class="gutter" id="gutter"></div>
+          <div class="content" id="content">
+            <div class="flow" id="flow"></div>
+          </div>
+        </div>
+      </main>
+
+    </div>
+
+    <div class="statusbar" id="statusbar" hidden>
+      <span id="prog">0%</span>
+      <span class="spacer"></span>
+      <span id="chapterInfo">章 1 / 1</span>
+      <span id="cacheInfo" hidden>缓存 0 章</span>
+      <span id="pageInfo">页 1 / 1</span>
+      <span id="fontInfo">字号 16</span>
+    </div>
+
+    <div class="desk-drag" id="deskDrag" data-tauri-drag-region title="拖动"></div>
+    <div class="desk-exit" id="deskExit" hidden>摸鱼模式 · ←→/↑↓ 翻页 · 任意处拖动 · 拖边角改大小 · 点这里退出（⌘⇧M）</div>
+
+    <div class="import-menu" id="importMenu" hidden>
+      <button data-import="file">导入 TXT 文件</button>
+      <button data-import="paste">粘贴文章 / 文本</button>
+      <button data-import="link">从链接导入文章</button>
+    </div>
+
+    <div class="rz n" data-rz="North"></div>
+    <div class="rz s" data-rz="South"></div>
+    <div class="rz e" data-rz="East"></div>
+    <div class="rz w" data-rz="West"></div>
+    <div class="rz ne" data-rz="NorthEast"></div>
+    <div class="rz nw" data-rz="NorthWest"></div>
+    <div class="rz se" data-rz="SouthEast"></div>
+    <div class="rz sw" data-rz="SouthWest"></div>
+  </div>
+
+  <div class="modal" id="articleModal" hidden>
+    <div class="modal-box">
+      <div class="modal-head"><strong id="modalTitle">导入文章</strong><button class="icon-btn" id="modalClose">×</button></div>
+      <div class="modal-body">
+        <label class="field" id="linkField">
+          <span>文章链接</span>
+          <input id="articleUrl" type="text" placeholder="https://mp.weixin.qq.com/s/…" spellcheck="false" />
+        </label>
+        <label class="field">
+          <span>正文内容</span>
+          <textarea id="articleText" placeholder="粘贴正文，或先用上面的链接抓一次"></textarea>
+        </label>
+        <label class="field">
+          <span>标题</span>
+          <input id="articleTitle" type="text" placeholder="留空就用网页标题" />
+        </label>
+      </div>
+      <div class="modal-foot">
+        <button id="articleFetch" class="btn-mini">从链接抓取正文</button>
+        <span class="spacer"></span>
+        <button id="articleCancel" class="btn-mini">取消</button>
+        <button id="articleOk" class="btn-mini primary">导入</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script>
+    window.addEventListener("error", function (event) {
+      var flow = document.querySelector("#flow");
+      if (flow) flow.textContent = "脚本加载失败：" + (event.message || event.type);
+    });
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

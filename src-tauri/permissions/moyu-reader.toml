@@ -1,0 +1,102 @@
+# 应用自定义命令权限（Tauri 2 ACL）
+# 引用方式（capabilities 里）：allow-search-books / allow-download-book / allow-read-file（应用自身命名空间，无需前缀）
+
+[[permission]]
+identifier = "allow-search-books"
+description = "允许在书源中搜索小说"
+commands.allow = ["search_books"]
+
+[[permission]]
+identifier = "allow-download-book"
+description = "允许下载整本小说到本地"
+commands.allow = ["download_book"]
+
+[[permission]]
+identifier = "allow-read-file"
+description = "允许读取本地小说文本文件"
+commands.allow = ["read_file"]
+
+[[permission]]
+identifier = "allow-set-desktop-mode"
+description = "允许切换桌面文字模式的原生窗口效果"
+commands.allow = ["set_desktop_mode"]
+
+[[permission]]
+identifier = "allow-cover-data"
+description = "允许读取/缓存书籍封面"
+commands.allow = ["cover_data"]
+
+[[permission]]
+identifier = "allow-shelf-list"
+description = "允许读取书架"
+commands.allow = ["shelf_list"]
+
+[[permission]]
+identifier = "allow-shelf-add"
+description = "允许把书加入书架"
+commands.allow = ["shelf_add"]
+
+[[permission]]
+identifier = "allow-shelf-remove"
+description = "允许从书架移除"
+commands.allow = ["shelf_remove"]
+
+[[permission]]
+identifier = "allow-shelf-progress"
+description = "允许记录阅读进度"
+commands.allow = ["shelf_progress"]
+
+[[permission]]
+identifier = "allow-open-book"
+description = "允许打开一本书（取目录）"
+commands.allow = ["open_book"]
+
+[[permission]]
+identifier = "allow-load-chapter"
+description = "允许按需加载并缓存章节"
+commands.allow = ["load_chapter"]
+
+[[permission]]
+identifier = "allow-prefetch-chapters"
+description = "允许预取后续章节"
+commands.allow = ["prefetch_chapters"]
+
+[[permission]]
+identifier = "allow-book-cover"
+description = "允许从详情页取书籍封面"
+commands.allow = ["book_cover"]
+
+[[permission]]
+identifier = "allow-download-start"
+description = "允许启动整本下载"
+commands.allow = ["download_start"]
+
+[[permission]]
+identifier = "allow-download-pause"
+description = "允许暂停整本下载"
+commands.allow = ["download_pause"]
+
+[[permission]]
+identifier = "allow-download-resume"
+description = "允许继续整本下载"
+commands.allow = ["download_resume"]
+
+[[permission]]
+identifier = "allow-download-cancel"
+description = "允许取消整本下载"
+commands.allow = ["download_cancel"]
+
+[[permission]]
+identifier = "allow-download-status"
+description = "允许查询下载进度"
+commands.allow = ["download_status", "download_all"]
+
+[[permission]]
+identifier = "allow-fetch-article"
+description = "允许从链接抓取文章正文"
+commands.allow = ["fetch_article"]
+
+[[permission]]
+identifier = "allow-save-window-bounds"
+description = "允许记住窗口位置与大小"
+commands.allow = ["save_window_bounds"]
