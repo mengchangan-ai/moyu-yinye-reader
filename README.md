@@ -5,7 +5,7 @@
 **一个可以光明正大摸鱼的小说阅读器**
 桌面一个小窗口，手机一个 App，同一套代码。
 
-`Tauri 2` · `Rust` · `原生 HTML/CSS/JS` · 桌面（macOS / Windows / Linux）+ 安卓
+`Tauri 2` · `Rust` · `原生 HTML/CSS/JS` · macOS + 安卓
 
 </div>
 
@@ -34,6 +34,12 @@
 | --- | --- | --- |
 | ![安卓阅读](docs/screens/android-reader.png) | ![安卓搜索](docs/screens/android-search.png) | ![安卓目录](docs/screens/android-toc.png) |
 
+**摸鱼模式**：标题栏、工具栏、状态栏全部消失，窗口变纯透明，只剩正文浮在桌面上。鼠标悬停会浮出退出提示，`⌘⇧M` 也能进出。
+
+![摸鱼模式](docs/screens/desktop-desk-mode.png)
+
+> 上图背景是示意壁纸，实际就是你桌面上的东西透过来。
+
 ## 功能
 
 **桌面**
@@ -56,8 +62,14 @@
 
 ## 下载
 
-- **安卓**：仓库里的 `dist/yinye-android-0.3.0.apk` 是打好的安装包（版本 0.3.0，universal，32/64 位都在里面，约 30MB）。用的是 debug keystore 自签名，安装时需要允许「未知来源」；换手机重装若提示签名冲突，先卸载旧的。
-- **桌面**：仓库只放源码，按下面的步骤自己构建（产物是本机架构的 `.app` / 安装包）。
+打好的包都在 [Releases](https://github.com/xigua0824/moyu-yinye-reader/releases)：
+
+| 平台 | 文件 | 说明 |
+| --- | --- | --- |
+| macOS（Apple Silicon） | `yinye-0.3.0-aarch64.dmg` | 拖进「应用程序」就能装。没签名也没公证，第一次打开要**右键 → 打开**（或在「隐私与安全性」里点「仍要打开」） |
+| 安卓 | `yinye-android-0.3.0.apk` | universal，32/64 位都在里面，约 30MB。debug keystore 自签名，装的时候要允许「未知来源」；换手机重装若提示签名冲突，先卸载旧的 |
+
+仓库里的 `dist/` 也留了一份 APK，方便直接下。桌面包当前只出了 **macOS arm64** 一个，Intel Mac / Windows / Linux 没有打包（见「已知边界」）。
 
 ## 自己构建
 
@@ -125,7 +137,7 @@ scripts/check-layout.mjs      开发期排版自检脚本（无头 Chrome 量各
 
 - 书源是第三方站点，随时可能失效；规则坏了要自己改
 - 安卓包用 debug 签名，自装没问题，上架应用商店得换正式签名
-- 桌面端只在 macOS 上实测过；Windows / Linux 是同一份代码，但需要把 `tauri.conf.json` 的 `bundle.targets` 改成对应目标，未打包验证
+- **只出了 macOS（arm64）和安卓两个包**：只在这两个平台上跑过；Windows / Linux 没打包、没验证，Intel Mac 也没单独出包（代码里 `bundle.targets` 只有 `app` / `dmg`）
 - 「整本下载」只在桌面端有，手机端只有按章缓存
 - 不内置任何小说正文，书架为空是正常的，先搜一本
 
