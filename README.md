@@ -62,7 +62,7 @@
 
 ## 下载
 
-打好的包都在 [Releases](https://github.com/xigua0824/moyu-yinye-reader/releases)：
+打好的包都在 [Releases](https://github.com/mengchangan-ai/moyu-yinye-reader/releases)：
 
 | 平台 | 文件 | 说明 |
 | --- | --- | --- |
